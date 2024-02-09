@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .nested-table {
+      border-collapse: collapse;
+      margin-top: 5px;
+      margin-left: 20px;
+    }
+
+    .nested-table th,
+    .nested-table td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JSON Table</h1>
+  <div id="json-container"></div>
+
+  <script>
+    // Function to create a nested table for an object
+    function createNestedTable(obj, prefix = '') {
+      const nestedTable = document.createElement('table');
+      nestedTable.classList.add('nested-table');
+      Object.entries(obj).forEach(([key, value]) => {
+        const nestedRow = nestedTable.insertRow();
+        const nestedCellKey = nestedRow.insertCell(0);
+        const nestedCellValue = nestedRow.insertCell(1);
+        nestedCellKey.textContent = `${prefix}.${key}`;
+        if (typeof value === 'object' && value !== null) {
+          // If value is an object, recursively create a nested table
+          nestedCellValue.appendChild(createNestedTable(value, `${prefix}.${key}`));
+        } else {
+          nestedCellValue.textContent = value.length > 64 ? `${value.substring(0, 64)}...` : value;
+        }
+      });
+      return nestedTable;
+    }
+
+    // Function to fetch JSON data from a file
+    function fetchJSON() {
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          const jsonContainer = document.getElementById('json-container');
+          // Create a nested table for the entire JSON object
+          const topLevelTable = createNestedTable(data);
+          jsonContainer.appendChild(topLevelTable);
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
+    }
+
+    // Call fetchJSON function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchJSON);
+  </script>
+</body>
+
+</html>
