@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles2.css">
+
+</head>
+
+<body>
+  <!-- <h1>Bolecode PX</h1> -->
+  <!-- <p>Page como preferir, boleto ou pix.</p>
+  <img style="width:140px;" src="logo.svg" alt="Seu SVG"> -->
+
+
+  <table border="1">
+    <tr>
+      <th>
+        Bolecode PX
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <table border="1">
+          <tr>
+            <th>Chave Pix</th>
+            <td>{chave}</td>
+          </tr>
+          <tr>
+            <th>Nome Cobrança</th>
+            <td>{beneficiario_nome_cobranca}</td>
+          </tr>
+          <tr>
+            <th>Tipo Pessoa</th>
+            <td>{beneficiario_tipo_pessoa}</td>
+          </tr>
+          <tr>
+            <th>Número Cadastro Nacional Pessoa Jurídica</th>
+            <td>{beneficiario_numero_cadastro_nacional_pessoa_juridica}</td>
+          </tr>
+          <tr>
+            <th>Endereço</th>
+            <td>
+              <table border="1">
+                <tr>
+                  <td>logradouro:</td>
+                  <td>{beneficiario_endereco_nome_logradouro}</td>
+                </tr>
+                <tr>
+                  <td>bairro:</td>
+                  <td>{beneficiario_endereco_nome_bairro}</td>
+                </tr>
+                <tr>
+                  <td>cidade:</td>
+                  <td>{beneficiario_endereco_nome_cidade}</td>
+                </tr>
+                <tr>
+                  <td>UF:</td>
+                  <td>{beneficiario_endereco_sigla_UF}</td>
+                </tr>
+                <tr>
+                  <td>CEP:</td>
+                  <td>{beneficiario_endereco_numero_CEP}</td>
+                </tr>
+              </table>
+            </td>
+
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th>Dados do Boleto</th>
+    </tr>
+    <tr>
+      <td>
+        <table border="1">
+          <tr>
+            <th>Data Emissão</th>
+            <td>{dado_boleto_data_emissao}</td>
+          </tr>
+          <tr>
+            <th>Data Vencimento</th>
+            <td>{dado_boleto_data_vencimento}</td>
+          </tr>
+          <tr>
+            <th>Data Limite Pagamento</th>
+            <td>{dado_boleto_data_limite_pagamento}</td>
+          </tr>
+          <tr>
+            <th>Valor Título</th>
+            <td>{dado_boleto_valor_titulo}</td>
+          </tr>
+          <tr>
+            <th>Valor Total Título</th>
+            <td>{dado_boleto_valor_total_titulo}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th>QR Code PIX</th>
+    </tr>
+    <tr>
+      <td>
+        <table border="1">
+          <tr>
+            <th> <img style="aspect-ratio:1/1;width:200px; display: block;"
+                src="data:application/pdf;base64,{{ qr_code_base64 }}" alt="qr_code_base64" />
+            </th>
+            <td> <img style="height: 200px;display: block;" src="data:application/pdf;base64,{{ barcode_base64 }}"
+                alt="barcode_base64" />
+            </td>
+          </tr>
+        </table>
+      </td>
+  </table>
+</body>
+
+</html>
